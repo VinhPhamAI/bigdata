@@ -1,6 +1,14 @@
+chmod +x bin/spark-class.cmd
+
 bin/spark-class org.apache.spark.deploy.master.Master
 
 bin/spark-class org.apache.spark.deploy.worker.Worker -c 10 -m 4G spark://172.23.160.18:7077
+
+sudo apt install openssh-server
+sudo systemctl start sshd
+ssh localhost
+
+./spark/bin/spark-submit  ./vn.vitk-master/target/vn.vitk-3.0.jar -i vi.txt
 
 ./spark/bin/spark-submit --master spark://172.23.160.18:7077 --driver-memory 6g ./vn.vitk-master/target/vn.vitk-3.0.jar -i vi.txt -o output
 
