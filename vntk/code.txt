@@ -1,1 +1,8 @@
+bin/spark-class org.apache.spark.deploy.master.Master
+
+bin/spark-class org.apache.spark.deploy.worker.Worker -c 10 -m 4G spark://172.23.160.18:7077
+
+./spark/bin/spark-submit --master spark://172.23.160.18:7077 --driver-memory 6g ./vn.vitk-master/target/vn.vitk-3.0.jar -i vi.txt -o output
+
+./spark/bin/spark-submit   --master spark://172.23.160.18:7077   --driver-memory 4g   --executor-memory 4g --executor-cores 4 --num-executors 10 --conf spark.default.parallelism=1000  --conf spark.dynamicAllocation.enabled=true --conf spark.shuffle.service.enabled=true --conf spark.dynamicAllocation.minExecutors=10  --conf spark.dynamicAllocation.maxExecutors=50 ./vn.vitk-master/target/vn.vitk-3.0.jar   -i /home/vinhpham/output/*.txt -o output3.txt
 
